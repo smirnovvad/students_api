@@ -20,7 +20,7 @@ users_schema = UserSchema(many=True)
 
 urls_blueprint = Blueprint('urls', __name__,)
 
-
+### STUDENTS ###
 @urls_blueprint.route("/student", methods=["GET"])
 @jwt_required
 def get_students():
@@ -29,7 +29,7 @@ def get_students():
     return jsonify(result)
 
 
-
+### ADD STUDENT
 @urls_blueprint.route("/student", methods=["POST"])
 @jwt_required
 def add_student():
@@ -48,7 +48,7 @@ def add_student():
     return jsonify(student_schema.dump(new_student))
 
 
-
+### GET STUDENT
 @urls_blueprint.route("/student/<int:pk>", methods=["GET"])
 @jwt_required
 def student_detail(pk):
@@ -61,7 +61,7 @@ def student_detail(pk):
     return jsonify({"student": student_result, "group": group_result})
 
 
-# endpoint to update user
+### STUDENT UPDATE
 @urls_blueprint.route("/student/<int:pk>", methods=["PUT"])
 @jwt_required
 def student_update(pk):
@@ -82,7 +82,7 @@ def student_update(pk):
     return student_schema.jsonify(student)
 
 
-# endpoint to delete user
+### DEL STUDENT
 @urls_blueprint.route("/student/<int:pk>", methods=["DELETE"])
 @jwt_required
 def student_delete(pk):
@@ -95,7 +95,7 @@ def student_delete(pk):
 
     return student_schema.dump(student)
 
-
+### GROUPS
 @urls_blueprint.route("/group", methods=["GET"])
 @jwt_required
 def get_groups():
@@ -104,14 +104,8 @@ def get_groups():
     return jsonify(result)
 
 
-@urls_blueprint.route("/group/<path:group_name>", methods=["GET"])
-@jwt_required
-def get_groups_by_name(group_name):
-    groups = Group.query.filter(Group.name_group.contains('{!r}'.format(group_name))).all()
-    result = groups_schema.dump(groups)
-    return jsonify({'result': result, 'search': '{!r}'.format(group_name)})
 
-
+### GET GROUP
 @urls_blueprint.route("/group/<int:pk>", methods=["GET"])
 @jwt_required
 def group_detail(pk):
@@ -122,7 +116,7 @@ def group_detail(pk):
         return jsonify({"message": "Group could not be found."}), 400
     return jsonify(group_result)
 
-
+### GROUP STUDENTS
 @urls_blueprint.route("/group/<int:pk>/students", methods=["GET"])
 @jwt_required
 def group_students(pk):
@@ -132,12 +126,12 @@ def group_students(pk):
     return jsonify({"students": students_result, "group": group_result})
 
 
-
+### GET AUTH
 @urls_blueprint.route("/auth", methods=["POST"])
 def auth():
     if not request.is_json:
         print(request.get_data())
-        return jsonify({"msg": "Missing JSON in request"}), 400
+        return jsonify({"message": "Missing JSON in request"}), 400
     telegram_id = request.json.get('telegram_id', None)
     user = User.query.filter(User.telegram_id == telegram_id).scalar()
     if user is not None:
@@ -147,7 +141,7 @@ def auth():
     else:
         return jsonify({'message':'User with this telegram_id not found'}), 400
 
-
+### GET USER
 @urls_blueprint.route("/user/<int:pk>", methods=["GET"])
 @jwt_required
 def user_detail(pk):

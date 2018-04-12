@@ -10,7 +10,7 @@ class StudentSchema(ma.Schema):
         model = Student
         # include_fk = True
         # Fields to expose
-        fields = ('first_name', 'last_name', 'middle_name', 'email', '_links', 'traing')
+        fields = ('id','first_name', 'last_name', 'middle_name', 'email', '_links', 'traing')
     _links = ma.Hyperlinks({
         'self': ma.URLFor('urls.student_detail', pk='<id>'),
         'collection': ma.URLFor('urls.get_students')
@@ -25,7 +25,8 @@ class GroupSchema(ma.Schema):
         fields = ('id', 'name_group', '_links')
     _links = ma.Hyperlinks({
         'self': ma.URLFor('urls.group_detail', pk='<id>'),
-        'collection': ma.URLFor('urls.get_groups')
+        'collection': ma.URLFor('urls.get_groups'),
+        'students': ma.URLFor('urls.group_students',pk='<id>')
     })
 
 
