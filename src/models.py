@@ -11,8 +11,6 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_group = db.Column(db.String(50))
 
-    # def __init__(self, name_group):
-    #     self.name_group = name_group
 
 
 class Student(db.Model):
@@ -22,19 +20,22 @@ class Student(db.Model):
     first_name = db.Column(db.String(20), unique=False)
     middle_name = db.Column(db.String(50), unique=False)
     email = db.Column(db.String(50), unique=True)
+    phone = db.Column(db.String(11), unique=True)
     group_id = db.Column(db.Integer, db.ForeignKey('all_group.id'))
     group = db.relationship('Group', uselist=False, lazy='select')
     traing = db.Column(db.String(12), unique=False)
+    telegram_id = db.Column(db.String(40), unique=True)
 
-    # db.ForeignKeyConstraint(['group_id', 'name_group'], ['all_group.id', 'all_group.name_group'])
 
-    def __init__(self, email, first_name, last_name, middle_name, group_id, traing):
+    def __init__(self, email, first_name, last_name, middle_name, group_id, traing, telegram_id, phone):
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
         self.middle_name = middle_name
         self.group_id = group_id
         self.traing = traing
+        self.telegram_id = telegram_id
+        self.phone = phone
 
 
 class User(db.Model):
