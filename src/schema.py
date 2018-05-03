@@ -10,12 +10,11 @@ class StudentSchema(ma.Schema):
         model = Student
         # include_fk = True
         # Fields to expose
-        fields = ('id','first_name', 'last_name', 'middle_name', 'email', '_links', 'traing')
+        fields = ('id', 'first_name', 'last_name', 'middle_name', 'email', '_links', 'traing', 'telegram_id', 'phone')
     _links = ma.Hyperlinks({
         'self': ma.URLFor('urls.student_detail', pk='<id>'),
         'collection': ma.URLFor('urls.get_students')
     })
-    # name_group = ma.Function(lambda obj: obj.group.name_group)
 
 
 class GroupSchema(ma.Schema):
@@ -26,13 +25,11 @@ class GroupSchema(ma.Schema):
     _links = ma.Hyperlinks({
         'self': ma.URLFor('urls.group_detail', pk='<id>'),
         'collection': ma.URLFor('urls.get_groups'),
-        'students': ma.URLFor('urls.group_students',pk='<id>')
+        'students': ma.URLFor('urls.group_students', pk='<id>')
     })
 
 
 class UserSchema(ma.Schema):
     class Meta:
         model = User
-        # include_fk = True
-        # Fields to expose
         fields = ('first_name', 'last_name', 'middle_name', 'email', 'username')
