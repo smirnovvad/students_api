@@ -16,5 +16,5 @@ PyJWT==1.6.4
 PyMySQL==0.8.1
 pytz==2018.4
 six==1.11.0
-SQLAlchemy==1.2.7
+SQLAlchemy==1.2.8
 Werkzeug==0.14.1
