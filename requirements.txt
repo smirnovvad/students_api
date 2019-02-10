@@ -12,7 +12,7 @@ MarkupSafe==1.1.0
 marshmallow==3.0.0rc4
 marshmallow-sqlalchemy==0.16.0
 mysqlclient==1.4.2
-PyJWT==1.6.4
+PyJWT==1.7.1
 PyMySQL==0.8.1
 pytz==2018.4
 six==1.11.0
