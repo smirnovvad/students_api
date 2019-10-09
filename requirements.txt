@@ -1,4 +1,4 @@
-aniso8601==4.1.0
+aniso8601==8.0.0
 click==7.0
 Flask==1.0.2
 Flask-JWT-Extended==3.17.0
