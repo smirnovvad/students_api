@@ -8,7 +8,7 @@ Flask-SQLAlchemy==2.4.1
 gunicorn==19.9.0
 itsdangerous==1.1.0
 Jinja2==2.10.3
-MarkupSafe==1.1.0
+MarkupSafe==1.1.1
 marshmallow==3.0.0rc4
 marshmallow-sqlalchemy==0.16.0
 mysqlclient==1.4.2
