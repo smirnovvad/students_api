@@ -2,7 +2,7 @@ aniso8601==8.0.0
 click==7.0
 Flask==1.1.1
 Flask-JWT-Extended==3.24.0
-flask-marshmallow==0.8.0
+flask-marshmallow==0.10.1
 Flask-RESTful==0.3.7
 Flask-SQLAlchemy==2.3.2
 gunicorn==19.9.0
